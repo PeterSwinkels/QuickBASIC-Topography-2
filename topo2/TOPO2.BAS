@@ -1,3 +1,4 @@
+DECLARE SUB CheckForMouse ()
 DEFINT A-Z
 
 TYPE LocationStr
@@ -46,6 +47,7 @@ DIM Background(0 TO 9293) AS INTEGER
 DIM ErrorCode AS INTEGER
 DIM KeyStroke AS STRING
 
+ CheckForMouse
  Initialize
  DisplayTitle
 
@@ -119,6 +121,17 @@ SUB Center (x, Text AS STRING)
  PRINT Text
 END SUB
 
+SUB CheckForMouse
+DIM Registers AS RegistersStr
+
+ Registers.ax = &H0
+ INTERRUPT &H33, Registers, Registers
+ IF Registers.ax = &H0 THEN
+  PRINT "Error: No mouse detected."
+  END
+ END IF
+END SUB
+
 SUB DisplayLocations (Location() AS LocationStr, LocationCount AS INTEGER)
 DIM Index AS INTEGER
  
@@ -160,10 +173,10 @@ SUB DisplayStatusBar (Right AS INTEGER, Wrong AS INTEGER, Turn AS INTEGER)
  LOCATE 1, 5
  PRINT USING "Right: ##   Wrong: ##   Turns left: ### "; Right; Wrong; Turn
  COLOR 7
- LOCATE , 1: PRINT STRING$(80, "Ã„");
+ LOCATE , 1: PRINT STRING$(80, "Ä");
 END SUB
 
-SUB DisplayTitle ()
+SUB DisplayTitle
 DIM FileH AS INTEGER
 DIM Row AS STRING
 
@@ -181,7 +194,7 @@ DIM Row AS STRING
  COLOR 7
  PRINT
  Center 0, "   Topography 2   "
- Center 0, "   Version 2.13   "
+ Center 0, "   Version 2.14   "
  Center 0, "By: Peter Swinkels"
  Center 0, "    ***1997***    "
  COLOR 9
@@ -203,7 +216,7 @@ DIM Registers AS RegistersStr
  CursorY = Registers.dx
 END SUB
 
-SUB Initialize ()
+SUB Initialize
  RANDOMIZE TIMER
  SCREEN 12
  WIDTH 80, 30
@@ -303,7 +316,7 @@ DIM Registers AS RegistersStr
  LOOP UNTIL Buttons = Status
 END SUB
 
-SUB Quit ()
+SUB Quit
  SCREEN 0
  WIDTH 80, 25
  COLOR 7, 0
@@ -329,7 +342,7 @@ DIM Selected AS INTEGER
  SelectLocation = Selected
 END FUNCTION
 
-FUNCTION SelectRegion$ ()
+FUNCTION SelectRegion$
 DIM Background(0 TO 783) AS INTEGER
 DIM CursorY AS INTEGER
 DIM Index AS INTEGER
@@ -347,7 +360,7 @@ DIM SelectedRegion AS INTEGER
  COLOR 7
  Center 1, "Select a region."
  COLOR 15
- PRINT STRING$(80, "Ã„");
+ PRINT STRING$(80, "Ä");
  COLOR 9
  LOCATE 5
  FOR Index = LBOUND(RegionName) TO UBOUND(RegionName)
