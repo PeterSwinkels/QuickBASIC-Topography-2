@@ -13,7 +13,7 @@ TYPE RegistersStr
  bx    AS INTEGER
  cx    AS INTEGER
  dx    AS INTEGER
- ps    AS INTEGER
+ bp    AS INTEGER
  si    AS INTEGER
  di    AS INTEGER
  flags AS INTEGER
@@ -160,7 +160,7 @@ SUB DisplayStatusBar (Right AS INTEGER, Wrong AS INTEGER, Turn AS INTEGER)
  LOCATE 1, 5
  PRINT USING "Right: ##   Wrong: ##   Turns left: ### "; Right; Wrong; Turn
  COLOR 7
- LOCATE , 1: PRINT STRING$(80, "Ä");
+ LOCATE , 1: PRINT STRING$(80, "Ã„");
 END SUB
 
 SUB DisplayTitle ()
@@ -347,7 +347,7 @@ DIM SelectedRegion AS INTEGER
  COLOR 7
  Center 1, "Select a region."
  COLOR 15
- PRINT STRING$(80, "Ä");
+ PRINT STRING$(80, "Ã„");
  COLOR 9
  LOCATE 5
  FOR Index = LBOUND(RegionName) TO UBOUND(RegionName)
