@@ -1,4 +1,3 @@
-DECLARE SUB CheckForMouse ()
 DEFINT A-Z
 
 TYPE LocationStr
@@ -28,6 +27,7 @@ DECLARE FUNCTION LoadLocations (Location() AS LocationStr, RegionFile AS STRING)
 DECLARE FUNCTION SelectLocation (Location() AS LocationStr, LocationCount AS INTEGER)
 DECLARE FUNCTION SelectRegion$ ()
 DECLARE SUB Center (x, Text AS STRING)
+DECLARE SUB CheckForMouse ()
 DECLARE SUB DisplayLocations (Location() AS LocationStr, LocationCount AS INTEGER)
 DECLARE SUB DisplayMap (MapFile AS STRING)
 DECLARE SUB DisplayPrompt (Prompt AS STRING)
